@@ -208,7 +208,7 @@
 						<div
                                 style="display: flex;align-items: center;padding-top:  45px;justify-content: space-around;width: 100%;margin-bottom: 15px;">
                             <div class="ercode">
-                                <img alt="" style="width: 120px;" id="qrcode" src="gzh.jpg" />
+                                <img alt="公众号二维码" style="width: 120px;" src="gzh.jpg" />
                                 <div class="btnercode">扫码关注【隱無邪】公众号</div>
                             </div>
                         </div>
@@ -222,7 +222,11 @@
         </div>
     </div>
     <script>
-        $("#qrcode").attr('src', '?qrcode=' + window.location);
+        <script>
+    		// 动态生成"当前网址"的二维码
+			//$("#qrcode").attr('src', '?qrcode=' + window.location);
+		</script>
+
     </script>
 </body>
 </html>
