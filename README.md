@@ -14,7 +14,7 @@
 | `img.webp` / `mark.webp` | 主页背景图 / 印记图 |
 | `gzh.jpg` / `logo@2x.png` / `favicon.ico` / `apple-ico-2.png` | 二维码、Logo、站点图标 |
 | `mp4/index.html` | 离线视频格式重封装工具（remux，不重新编码） |
-| `I_help_you/` | 「你不会百度吗」恶搞子站（Baidu / Bing / Google 三套皮肤） |
+| `help/` | 「你不会百度吗」恶搞子站（Baidu / Bing / Google 三套皮肤） |
 | `alist/` `github/` `google/` `gpt/` `s/` 等 | 各子域跳转页（`*.l1n2.com/xxx` → 目标站） |
 
 ## 跳转页约定
