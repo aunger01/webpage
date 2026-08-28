@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>视频格式转换工具（离线版）</title>
+    <title>视频格式重封装工具（离线版）</title>
     <style>
         * {
             margin: 0;
@@ -185,7 +185,10 @@
 </head>
 <body>
     <div class="container">
-        <h1>离线视频格式转换工具</h1>
+        <h1>离线视频格式重封装工具</h1>
+        <p style="color:#b45309;background-color:#fef3c7;border:1px solid #fde68a;border-radius:0.375rem;padding:0.5rem 0.75rem;font-size:0.8125rem;line-height:1.5;margin-bottom:1.5rem;text-align:left;">
+            ⚠️ 说明：本工具<b>不重新编码</b>视频，仅将原文件重新打包为所选容器格式（remux 重封装），画质、体积与编码保持不变。如需真正的转码压缩，请使用专业软件。
+        </p>
 
         <!-- 文件上传区域 -->
         <div class="upload-area">
@@ -250,9 +253,9 @@
 
         <!-- 下载区域 -->
         <div id="downloadArea" class="download-area">
-            <h3 class="download-title">转换完成</h3>
+            <h3 class="download-title">重封装完成</h3>
             <a id="downloadBtn" class="download-link" download>
-                下载转换后的视频
+                下载重封装后的视频
             </a>
         </div>
     </div>

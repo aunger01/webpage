@@ -9,12 +9,13 @@
     <title>安杰主页</title>
     <meta name="keywords" content="安杰导航,L1N2.com">
     <meta name="description" content="安杰主页">
+    <link rel="icon" href="favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-ico-2.png">
     <link href="css/main.css"
           rel="stylesheet"/>
     <link href="css/style.css"
           rel="stylesheet"/>
-    <script src="js/jquery.min.js"></script>
-    <script src="js/clipboard.min.js"></script>
+    <link rel="preload" as="image" href="img.webp">
     <script>
         function toUrl(url, msg = '') {
             if (msg) {
@@ -23,13 +24,23 @@
             return window.location = url;
         }
 
-        function copyBtn() {
-            new ClipboardJS('.btn', {
-                text: function (trigger) {
-                    return 'https://L1N2.com';
-                }
-            });
-            alert('复制成功');
+        async function copyBtn() {
+            const text = 'https://L1N2.com';
+            try {
+                await navigator.clipboard.writeText(text);
+                alert('复制成功');
+            } catch (e) {
+                // 非安全上下文（http）下的兜底方案
+                const ta = document.createElement('textarea');
+                ta.value = text;
+                ta.style.position = 'fixed';
+                ta.style.opacity = '0';
+                document.body.appendChild(ta);
+                ta.select();
+                document.execCommand('copy');
+                document.body.removeChild(ta);
+                alert('复制成功');
+            }
         }
     </script>
 
@@ -41,7 +52,7 @@
     <div class="page-center">
         <div class="header">
             <img src="logo@2x.png"
-                 style="width: 175px; height: 50px;" alt="555"/>
+                 style="width: 175px; height: 50px;" alt="安杰主页 Logo"/>
         </div>
 
         <div class="top-line"></div>
@@ -221,12 +232,5 @@
             </div>
         </div>
     </div>
-    <script>
-        <script>
-    		// 动态生成"当前网址"的二维码
-			//$("#qrcode").attr('src', '?qrcode=' + window.location);
-		</script>
-
-    </script>
 </body>
 </html>
