@@ -47,24 +47,3 @@ body {
     margin: 0px 5px;
     border-radius: 20px;
 }
-
-#down{
-    background: #FFF;
-    background: linear-gradient(to bottom, #FF2,#FB0);
-    color: #AF2E08;
-    font-size: 16px;
-    font-weight: bold;
-    height: 40px;
-    padding: 10px 20px;
-    margin: 0px 5px;
-    border-radius: 20px;
-}
-
-#down a{
-    color: #AF2E08;
-    text-decoration: none;
-}
-
-#down a:visited{
-    color: #AF2E08;
-}
