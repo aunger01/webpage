@@ -41,7 +41,7 @@
 | `puabook/`（含 `book/`） | https://10000101.xyz/pua-books · https://chriszheng.science/pua-books/ |
 | `univ/`（含 `189/`、`carplay/`） | 大学资料网盘等三条转发 |
 
-> `help/`、`xjj/`、`mp4/` 在根目录留有 noindex 兜底跳转页，转发至 `app/` 下新地址，旧链接不失效。
+> `help/`、`mp4/` 在根目录留有 noindex 兜底跳转页，转发至 `app/` 下新地址，旧链接不失效。（`xjj/` 兜底页已按需移除）
 
 ## 跳转页约定
 
