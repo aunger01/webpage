@@ -35,6 +35,8 @@ summary:hover{background:rgba(124,155,255,.12)}
 summary .chev{transition:.18s;color:var(--sub);font-size:11px;width:12px;flex:none}
 details[open]>summary .chev{transform:rotate(90deg)}
 .folder{color:#ffd479}
+.go{font-size:12px;color:var(--accent);text-decoration:none;margin-left:2px;flex:none}
+.go:hover{text-decoration:underline;color:#a8c1ff}
 .leaf{display:flex;align-items:center;gap:8px;padding:2px 6px 2px 20px;margin-left:6px;border-radius:8px}
 .leaf:hover{background:rgba(124,155,255,.12)}
 a{color:var(--txt);text-decoration:none}
@@ -58,10 +60,10 @@ footer a{color:var(--sub)}
 </div>
 </header>
 <div class="card"><tree-root id="tree"></tree-root></div>
-<p id="status">静态视图 · commit e9fa58b · 仓库共 52 个文件</p>
+<p id="status">静态视图 · commit e59df0d · 仓库共 52 个文件</p>
 <footer>© 2020-2026 Aunger · <a href="/">← 返回主页</a></footer>
 </div>
-<script type="application/json" id="tree-data">{".gitignore":94,"404.html":1425,"CNAME":8,"README.md":2611,"app":{"help":{"Baidu":{"css":{"style.css":6132},"img":{"baidu_logo.png":15444},"index.html":2362,"js":{"script.js":5041}},"Bing":{"css":{"style.css":6089},"img":{"by_logo.gif":52386},"index.html":2280,"js":{"script.js":4948}},"Google":{"css":{"style.css":6104},"img":{"gl20150902.gif":267335},"index.html":2278,"js":{"script.js":5023}},"app-ico-2.png":5283,"index.html":5210,"js":{"base64.min.js":3685,"clipboard.min.js":10459,"jquery.min.js":86663}},"mp4":{"index.html":14398},"xjj":{"assets":{"style.css":747},"index.html":1915}},"\"app":{"help":{"\\346\\211\\223\\345\\274\\200\\346\\226\\207\\344\\273\\266\\345\\244\\271\\347\\233\\256\\345\\275\\225.html\"":0}},"assets":{"apple-ico.png":8666,"gzh.jpg":94817,"logo@2x.png":6643,"mark.webp":8620},"css":{"main.css":1887,"style.css":12241},"favicon.ico":15086,"github-top":{"index.html":563},"github":{"index.html":515},"google":{"index.html":563},"gpt":{"index.html":479},"help":{"index.html":500},"index.html":11459,"index1.html":12394,"md":{"index.html":533},"mp4":{"index.html":497},"my":{"index.html":515},"pi":{"index.html":530},"puabook":{"book":{"index.html":533},"index.html":512},"resume":{"index.html":509},"robots.txt":23,"sbti":{"index.html":500},"univ":{"189":{"index.html":527},"carplay":{"index.html":530},"index.html":530},"xjj":{"index.html":497}}</script>
+<script type="application/json" id="tree-data">{".gitignore":94,"404.html":1425,"CNAME":8,"README.md":2669,"app":{"help":{"Baidu":{"css":{"style.css":6132},"img":{"baidu_logo.png":15444},"index.html":2362,"js":{"script.js":5041}},"Bing":{"css":{"style.css":6089},"img":{"by_logo.gif":52386},"index.html":2280,"js":{"script.js":4948}},"Google":{"css":{"style.css":6104},"img":{"gl20150902.gif":267335},"index.html":2278,"js":{"script.js":5023}},"app-ico-2.png":5283,"index.html":5210,"js":{"base64.min.js":3685,"clipboard.min.js":10459,"jquery.min.js":86663},"打开文件夹目录.html":2181},"mp4":{"index.html":14398},"xjj":{"assets":{"style.css":747},"index.html":1915}},"assets":{"apple-ico.png":8666,"gzh.jpg":94817,"logo@2x.png":6643,"mark.webp":8620},"css":{"main.css":1887,"style.css":12241},"favicon.ico":15086,"github-top":{"index.html":563},"github":{"index.html":515},"google":{"index.html":563},"gpt":{"index.html":479},"help":{"index.html":500},"index.html":11459,"index1.html":10098,"md":{"index.html":533},"mp4":{"index.html":497},"my":{"index.html":515},"pi":{"index.html":530},"puabook":{"book":{"index.html":533},"index.html":512},"resume":{"index.html":509},"robots.txt":23,"sbti":{"index.html":500},"univ":{"189":{"index.html":527},"carplay":{"index.html":530},"index.html":530},"xjj":{"index.html":497}}</script>
 <script>
 var BASE="https://l1n2.com/",REPO_API="https://api.github.com/repos/aunger01/webpage/git/trees/master?recursive=1";
 var NOTES={"index.html":"主页","index1.html":"本页 · 站点目录树","css":"主页样式","assets":"主页静态资源","app":"源码子站","app/help":"「你不会百度吗」恶搞子站","app/xjj":"随机视频子站","app/mp4":"离线视频重封装工具","github":"跳转页 → github.testing.ccwu.cc","github-top":"跳转页 → GitHub 中文项目榜","google":"跳转页 → Google Play 镜像","gpt":"跳转页 → cc.ai55.cc","md":"跳转页 → Markdown 编辑器","my":"跳转页 → 聚合导航书签","pi":"跳转页 → Pi Day","resume":"跳转页 → D&D 简历编辑器","sbti":"跳转页 → SBTI","puabook":"跳转页 → PUA 书目","univ":"跳转页 → 大学资料网盘","help":"兜底跳转 → app/help","xjj":"兜底跳转 → app/xjj","mp4":"兜底跳转 → app/mp4","favicon.ico":"站点图标","CNAME":"l1n2.com 域名绑定","robots.txt":"爬虫规则","404.html":"404 页面",".gitignore":"Git 忽略规则","README.md":"仓库说明"};
@@ -75,23 +77,28 @@ function render(tree,el,topLevel){
     var da=isDir(tree[a]),db=isDir(tree[b]);
     if(da!==db)return da?-1:1;return a.localeCompare(b)});
   keys.forEach(function(name){
-    var v=tree[name],path=topLevel?name:topLevel+"/"+name,note=NOTES[path];
+    var v=tree[name],path=topLevel?topLevel+"/"+name:name,note=NOTES[path];
     if(isDir(v)){
       var d=document.createElement("details");
-      if(path.indexOf("/")<0)d.className="top",d.open=true;
+      if(!topLevel)d.className="top",d.open=true;
       var s=document.createElement("summary");
-      var hasIdx=isDir(v["index.html"])===false&&v["index.html"]!==undefined;
-      var label=document.createElement(hasIdx?"a":"span");
+      var hasIdx=v["index.html"]!==undefined&&!isDir(v["index.html"]);
+      var label=document.createElement("span");
       label.className="name folder";
-      label.textContent=icon(name,true)+" "+name+(hasIdx?" /":"");
-      if(hasIdx){label.href=BASE+path+"/";label.style.color="#ffd479"}
+      label.textContent=icon(name,true)+" "+name;
       s.appendChild(Object.assign(document.createElement("span"),{className:"chev",textContent:"▶"}));
       s.appendChild(label);
+      if(hasIdx){
+        var go=document.createElement("a");
+        go.href=BASE+path+"/";go.target="_blank";go.rel="noopener";
+        go.className="go";go.textContent="↗";go.title="新标签页打开 "+BASE+path+"/";
+        s.appendChild(go);
+      }
       if(note)s.appendChild(Object.assign(document.createElement("span"),{className:"note",textContent:note}));
       d.appendChild(s);render(v,d,path);el.appendChild(d);
     }else{
       var leaf=document.createElement("div");leaf.className="leaf";
-      var a=document.createElement("a");a.href=BASE+path;a.textContent=icon(name,false)+" "+name;
+      var a=document.createElement("a");a.href=BASE+path;a.target="_blank";a.rel="noopener";a.textContent=icon(name,false)+" "+name;
       leaf.appendChild(a);
       if(note)leaf.appendChild(Object.assign(document.createElement("span"),{className:"note",textContent:note}));
       leaf.appendChild(Object.assign(document.createElement("span"),{className:"size",textContent:fmtSize(v)}));
