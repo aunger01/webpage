@@ -11,7 +11,7 @@
 | 目录/文件 | 用途 |
 |---|---|
 | `index.html` | 主页（安杰主页，含导航入口、联系方式、公众号二维码） |
-| `index1.html` | 旧版地址发布页（已 noindex） |
+| `index1.html` | 站点目录树（全站文件结构一览，含 GitHub 匿名 API 同步按钮，已 noindex） |
 | `css/` | 主页样式（`main.css` 为 normalize，`style.css` 为页面样式） |
 | `assets/` | 主页静态资源：`apple-ico.png` / `logo@2x.png` / `gzh.jpg`（二维码）/ `mark.webp`（移动端印记图，桌面端背景为纯 CSS 渐变） |
 | `favicon.ico` | 站点图标（按浏览器惯例置于根目录） |
