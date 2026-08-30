@@ -401,7 +401,7 @@ a:hover {
     background: url(https://t1.021huaying.com/uploads/2023-07-11/50/2de55a42c3fe32f8f11264596de9961c.webp) no-repeat center; 
     */
         /*替换背景图片02方案：使用Base64编码*/
-        background: url(../mark.webp) no-repeat center;
+        background: url(../assets/mark.webp) no-repeat center;
     opacity: 0.2;
     position: fixed;
     left: 0px;
