@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-HK" data-page-node-id="elBQb52Da9KiSYXPzMc2lR">
+<head data-page-node-id="Kv7jc91PJqXFB5AlffnNZZ">
+<meta charset="utf-8" data-page-node-id="A5pe1AoTfeQhYn4cScj1m5">
+<meta name="viewport" content="width=device-width, initial-scale=1" data-page-node-id="Ch3aucx8afbIX7W9I7Fa0C">
+<title>测试結帳 — 送貨及聯絡人資料 | Apple Store 示範頁面</title>
+<style>
+  :root{
+    --bg:#f5f5f7;
+    --surface:#ffffff;
+    --text:#1d1d1f;
+    --text-2:#6e6e73;
+    --text-3:#86868b;
+    --hair:#d2d2d7;
+    --hair-soft:#e8e8ed;
+    --blue:#0071e3;
+    --blue-hover:#0077ed;
+    --danger:#e30000;
+    --chip-bg:#f5f5f7;
+    --radius:14px;
+    --radius-sm:10px;
+  }
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  html,body{margin:0;padding:0}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","SF Pro HK","PingFang HK","PingFang SC","Microsoft JhengHei","Helvetica Neue",Helvetica,Arial,"Noto Sans HK",sans-serif;
+    font-size:14px;
+    line-height:1.47059;
+    letter-spacing:-.022em;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  /* ---------- 頂部導覽 ---------- */
+  .globalnav{
+    background:rgba(251,251,253,.8);
+    backdrop-filter:saturate(180%) blur(20px);
+    -webkit-backdrop-filter:saturate(180%) blur(20px);
+    border-bottom:1px solid var(--hair-soft);
+    position:sticky;top:0;z-index:50;
+  }
+  .globalnav-in{
+    max-width:1024px;margin:0 auto;height:48px;
+    display:flex;align-items:center;justify-content:space-between;padding:0 22px;
+  }
+  .brand{font-size:16px;font-weight:600;letter-spacing:-.03em;display:flex;align-items:center;gap:8px}
+  .brand .mark{width:20px;height:20px;border-radius:6px;background:linear-gradient(150deg,#3a3a3c,#1d1d1f);display:inline-block}
+  .navlinks{display:flex;gap:22px;font-size:12px;color:var(--text-2)}
+  .navlinks span{cursor:default}
+  .navlinks .bag{font-weight:500;color:var(--text)}
+
+  /* ---------- 版面 ---------- */
+  .page{max-width:1024px;margin:0 auto;padding:32px 22px 96px}
+  .crumbs{font-size:12px;color:var(--text-3);margin-bottom:14px}
+  .crumbs b{color:var(--text-2);font-weight:400}
+  h1{font-size:32px;line-height:1.125;font-weight:600;letter-spacing:.004em;margin:0 0 10px}
+  .lead{font-size:15px;color:var(--text-2);max-width:640px;margin:0 0 20px}
+  .demo-flag{
+    display:inline-flex;align-items:center;gap:8px;
+    font-size:12px;color:#7a5b00;background:#fff7e0;border:1px solid #f0dcae;
+    padding:7px 12px;border-radius:999px;margin-bottom:26px;
+  }
+  .demo-flag .dot{width:7px;height:7px;border-radius:50%;background:#d9a300}
+
+  .layout{display:grid;grid-template-columns:minmax(0,1fr) 360px;gap:28px;align-items:start}
+  @media (max-width:900px){.layout{grid-template-columns:1fr}}
+
+  /* ---------- 卡片 / 區段 ---------- */
+  .card{background:var(--surface);border-radius:var(--radius);border:1px solid var(--hair-soft);overflow:hidden}
+  .card + .card{margin-top:20px}
+  .card-head{padding:20px 22px 0}
+  .card-title{font-size:19px;font-weight:600;margin:0 0 4px}
+  .card-sub{font-size:12px;color:var(--text-3);margin:0}
+  .card-body{padding:18px 22px 24px}
+
+  /* ---------- 表單 ---------- */
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  @media (max-width:600px){.grid2{grid-template-columns:1fr}}
+  .field{margin-bottom:18px}
+  .field:last-child{margin-bottom:0}
+  label.lb{display:block;font-size:13px;font-weight:500;margin-bottom:6px;color:var(--text)}
+  label.lb .opt{font-weight:400;color:var(--text-3)}
+  .req{color:var(--danger);margin-left:2px}
+  .hint{font-size:12px;color:var(--text-3);margin:5px 0 0}
+  input[type=text],input[type=email],input[type=tel],select,textarea{
+    width:100%;font:inherit;color:var(--text);background:#fff;
+    border:1px solid var(--hair);border-radius:var(--radius-sm);
+    padding:11px 13px;min-height:44px;outline:none;
+    transition:border-color .15s ease,box-shadow .15s ease,background .15s ease;
+  }
+  textarea{min-height:82px;resize:vertical}
+  input::placeholder,textarea::placeholder{color:#a1a1a6;font-style:italic}
+  input:focus,select:focus,textarea:focus{border-color:var(--blue);box-shadow:0 0 0 4px rgba(0,113,227,.15)}
+  input[readonly]{background:#fafafa;color:var(--text-2)}
+  select{appearance:none;-webkit-appearance:none;
+    background-image:url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5 6 6.5l5-5' fill='none' stroke='%236e6e73' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat:no-repeat;background-position:right 14px center;padding-right:36px}
+  .phone-row{display:grid;grid-template-columns:118px 1fr;gap:10px}
+  .prefix{
+    display:flex;align-items:center;gap:8px;height:44px;padding:0 12px;
+    border:1px solid var(--hair);border-radius:var(--radius-sm);background:#fafafa;color:var(--text-2);font-size:13px;
+  }
+  .prefix .flag{font-size:15px;line-height:1}
+  .field.invalid input,.field.invalid select,.field.invalid textarea{border-color:var(--danger);box-shadow:0 0 0 4px rgba(227,0,0,.10)}
+  .err{display:none;font-size:12px;color:var(--danger);margin:6px 0 0;align-items:center;gap:5px}
+  .field.invalid .err{display:flex}
+  .err::before{content:"!";display:inline-flex;align-items:center;justify-content:center;
+    width:13px;height:13px;border-radius:50%;background:var(--danger);color:#fff;font-size:10px;font-weight:700;flex:0 0 auto}
+
+  /* ---------- 按鈕 ---------- */
+  .actions{display:flex;align-items:center;gap:18px;margin-top:24px;flex-wrap:wrap}
+  .btn{border:0;cursor:pointer;font:inherit;border-radius:999px;padding:12px 26px;min-height:44px;
+    transition:background .15s ease,transform .06s ease,opacity .15s ease}
+  .btn:active{transform:scale(.985)}
+  .btn-primary{background:var(--blue);color:#fff;font-weight:500}
+  .btn-primary:hover{background:var(--blue-hover)}
+  .btn-plain{background:transparent;color:var(--blue);padding:12px 4px}
+  .btn-plain:hover{text-decoration:underline}
+  .btn-ghost{background:transparent;color:var(--text-2);border:1px solid var(--hair);font-weight:400}
+  .btn-ghost:hover{background:#f5f5f7}
+
+  /* ---------- 訂單摘要 ---------- */
+  .summary{background:var(--surface);border-radius:var(--radius);border:1px solid var(--hair-soft);padding:22px;position:sticky;top:72px}
+  .summary h2{font-size:17px;font-weight:600;margin:0 0 16px}
+  .prod{display:flex;gap:14px;padding-bottom:16px;border-bottom:1px solid var(--hair-soft)}
+  .thumb{width:64px;height:64px;border-radius:10px;background:linear-gradient(145deg,#efeff2,#dcdce2);flex:0 0 auto;display:flex;align-items:center;justify-content:center}
+  .thumb .ph{width:26px;height:52px;border-radius:7px;background:linear-gradient(160deg,#8e3341 0%,#6a212d 45%,#48141d 100%);
+    border:1px solid rgba(255,255,255,.28);position:relative;box-shadow:0 2px 6px rgba(0,0,0,.22)}
+  .thumb .ph::before{content:"";position:absolute;left:3px;top:3px;width:10px;height:10px;border-radius:3px;
+    background:rgba(0,0,0,.34);box-shadow:inset 0 0 0 1px rgba(255,255,255,.16)}
+  .po-note{font-size:12px;color:var(--text-3);background:#f5f5f7;border-radius:8px;padding:9px 11px;margin:14px 0 0;line-height:1.5}
+  .prod-name{font-size:13px;font-weight:500;margin:0 0 4px}
+  .prod-meta{font-size:12px;color:var(--text-3);margin:0}
+  .rows{margin:16px 0 0}
+  .row{display:flex;justify-content:space-between;font-size:13px;color:var(--text-2);padding:5px 0}
+  .row.total{font-size:16px;color:var(--text);font-weight:600;border-top:1px solid var(--hair-soft);margin-top:10px;padding-top:14px}
+  .free{color:#0a7f3f}
+  .assure{margin-top:18px;padding-top:18px;border-top:1px solid var(--hair-soft);font-size:12px;color:var(--text-3);display:grid;gap:9px}
+  .assure div{display:flex;gap:8px;align-items:flex-start}
+  .assure .ic{flex:0 0 auto;color:#0a7f3f}
+
+  /* ---------- 核對彈層 ---------- */
+  .overlay{position:fixed;inset:0;background:rgba(0,0,0,.42);display:none;align-items:center;justify-content:center;padding:24px;z-index:100}
+  .overlay.open{display:flex}
+  .modal{background:#fff;border-radius:18px;max-width:520px;width:100%;max-height:86vh;overflow:auto;padding:28px}
+  .modal h3{margin:0 0 4px;font-size:21px;font-weight:600}
+  .modal .m-sub{margin:0 0 20px;font-size:12px;color:var(--text-3)}
+  .kv{border:1px solid var(--hair-soft);border-radius:12px;overflow:hidden}
+  .kv .kvrow{display:grid;grid-template-columns:132px 1fr;gap:12px;padding:11px 14px;font-size:13px;border-bottom:1px solid var(--hair-soft)}
+  .kv .kvrow:last-child{border-bottom:0}
+  .kv .k{color:var(--text-3)}
+  .kv .v{color:var(--text);word-break:break-all}
+  .modal .actions{margin-top:22px}
+  .modal-note{font-size:12px;color:var(--text-3);margin-top:8px}
+
+  /* ---------- Toast ---------- */
+  .toast{
+    position:fixed;left:50%;bottom:34px;transform:translate(-50%,26px);
+    background:#1d1d1f;color:#f5f5f7;font-size:13px;padding:13px 22px;border-radius:999px;
+    opacity:0;pointer-events:none;transition:opacity .25s ease,transform .25s ease;z-index:120;max-width:88vw;text-align:center;
+  }
+  .toast.show{opacity:1;transform:translate(-50%,0)}
+
+  .footnote{max-width:1024px;margin:26px auto 0;padding:0 22px;font-size:12px;color:var(--text-3);line-height:1.6}
+</style>
+</head>
+<body data-page-node-id="o84Su1Xv1OJKMoQlK8ocDE">
+
+<header class="globalnav" data-page-node-id="p2HhS2KVDWWXZYvnjuiCPk">
+  <div class="globalnav-in" data-page-node-id="lBAkcqWQcwDSEq0Id5OlDo">
+    <div class="brand" data-page-node-id="mzHI3zGEOeUUnzFyNyyV4a"><span class="mark" data-page-node-id="iQueeaS1pDmJWQIDNa5IfA"></span>Apple Store</div>
+    <nav class="navlinks" data-page-node-id="SAARimPegGCj6lOHtO8UZI">
+      <span data-page-node-id="I5gXCxl5aj5rApiWCAQzPV">Store</span><span data-page-node-id="4awF2WXCSSs21CiSmFjTCh">Mac</span><span data-page-node-id="pEQYUhPXI6eZYkpOkRKhxb">iPad</span><span data-page-node-id="FgxlXJUzOaQquZszhjBf2K">iPhone</span><span data-page-node-id="FmxE1icGB3LTHbpfAbvIQp">Watch</span>
+      <span class="bag" data-page-node-id="LrAGy817QuJpqDocXCmR6F">購物袋</span>
+    </nav>
+  </div>
+</header>
+
+<main class="page" data-page-node-id="62WwCJ5XvSylm4SsmN13O1">
+  <div class="crumbs" data-page-node-id="DCaItaG6YHJif3U16QbtfR">Apple Store <b data-page-node-id="xqd7KA4nUVDFizElOiWMB7">›</b> 結帳 <b data-page-node-id="AGYYTqmkRBUERH89SA2ENk">›</b> 送貨及聯絡人資料</div>
+  <h1 data-page-node-id="az3bTVRtR3QPebEpC2H974">送貨及聯絡人資料</h1>
+  <p class="lead" data-page-node-id="5yefec6HUD6ZEJ9iOoQ24m">請填寫收件人資料及送貨地址。我們會以你提供的電郵地址及電話號碼，發送訂單確認與送貨通知，並於送貨前與你聯絡。</p>
+  <div class="demo-flag" data-page-node-id="DJwNn5NCRFbgXfBWWMuBsY"><span class="dot" data-page-node-id="E2G6cpuLm7TN7jYH1ZHxgd"></span>示範頁面 — 資料只在本機顯示，不會送出、不會提交至任何系統</div>
+
+  <div class="layout" data-page-node-id="yTJ70hh51LhFe6bA4gs18h">
+
+    <!-- ======= 表單 ======= -->
+    <form id="shipForm" novalidate autocomplete="off" data-page-node-id="QrfomaHCZ7EjkA9jCw4odi">
+
+      <section class="card" data-page-node-id="E2nuvtxjuM4M4rksxlHA8L">
+        <div class="card-head" data-page-node-id="h6nG3HIU3gP5fXKc25MIP9">
+          <h2 class="card-title" data-page-node-id="Uw1Q69CCdFgwsvzb0534sx">聯絡人資料</h2>
+          <p class="card-sub" data-page-node-id="4NEq8qxPrhytI4ckHX2aG1">請填寫可接收送貨通知的聯絡方式</p>
+        </div>
+        <div class="card-body" data-page-node-id="GyPmMN53LvuUqTPk1sQzxQ">
+          <div class="grid2" data-page-node-id="0djTtLFBGXghiinYLGNKya">
+            <div class="field" data-field="lastName" data-page-node-id="eCkDdwfmfqSccfNGtRXdE4">
+              <label class="lb" for="lastName" data-page-node-id="YZtUfgPJNbHyqxaP98oD4P">姓氏<span class="req" data-page-node-id="zMOD2A1wyziDAG8Sr4Xc2M">*</span></label>
+              <input id="lastName" name="lastName" type="text" placeholder="例如：陳" maxlength="30" autocomplete="family-name" data-page-node-id="pG1QdeNFCQ2Q22BXjWzXMX">
+              <p class="err" data-page-node-id="EpMAEVKC72pyNl2ZqS06BO">請輸入你的姓氏。</p>
+            </div>
+            <div class="field" data-field="firstName" data-page-node-id="iXHsOsgSdX0qYToXGizyLu">
+              <label class="lb" for="firstName" data-page-node-id="Dc59nP9g3qlIg2Huc7oVaD">名字<span class="req" data-page-node-id="GtoONZMD8F0s4bB74Il3lq">*</span></label>
+              <input id="firstName" name="firstName" type="text" placeholder="例如：大文" maxlength="30" autocomplete="given-name" data-page-node-id="cxGySvyCXXSaopC8qpON5k">
+              <p class="err" data-page-node-id="lePQ9WXAM6j9zfDcB1yiD9">請輸入你的名字。</p>
+            </div>
+          </div>
+
+          <div class="field" data-field="email" data-page-node-id="O5NEM7LW9PtBH0hokBBWf2">
+            <label class="lb" for="email" data-page-node-id="DHFJBlp5xaRRT6xcNxAVBV">電郵地址<span class="req" data-page-node-id="qSXGbkUKF6biXBQj1CcEiX">*</span></label>
+            <input id="email" name="email" type="email" placeholder="例如：taiman@example.com" autocomplete="email" data-page-node-id="REuNvbeWBqX8V6EmI8JV6E">
+            <p class="hint" data-page-node-id="7SZoGLMI2HUFN2WEiqx1Uw">訂單確認、送貨通知及收據將發送至此電郵地址。</p>
+            <p class="err" data-page-node-id="8dT5I6j6JSHgiH0uAgIZNe">請輸入有效的電郵地址。</p>
+          </div>
+
+          <div class="field" data-field="phone" data-page-node-id="GEdQRHlYAHF29WQrhOonsD">
+            <label class="lb" for="phone" data-page-node-id="E4PAxKBEqFJvS5bCKpyiPt">電話號碼<span class="req" data-page-node-id="4WtU3g6taNFaRE4NHIKzMU">*</span></label>
+            <div class="phone-row" data-page-node-id="ZkzA8LDH6Gu4490jE9ugFV">
+              <div class="prefix" data-page-node-id="CaTYVM4J10l7hHMNyo5QCC"><span class="flag" data-page-node-id="usxHY4irny3Eh6kMPompHd">🇭🇰</span>+852</div>
+              <input id="phone" name="phone" type="tel" inputmode="numeric" placeholder="例如：9123 4567" autocomplete="tel-national" data-page-node-id="rGFQ929Pmdm2XT4ymw1AxC">
+            </div>
+            <p class="hint" data-page-node-id="EilCcCIohlUsbdFIN6q5Ho">送貨人員會以此號碼與你聯絡，請確認號碼可接通。</p>
+            <p class="err" data-page-node-id="uxZk3INy60OV7xaaPUe2DR">請輸入 8 位數字的香港電話號碼。</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="card" data-page-node-id="ZH0SLPpum3YhTZCjk8Comt">
+        <div class="card-head" data-page-node-id="lBXrUd2qXQr0Fd0FmdaSLT">
+          <h2 class="card-title" data-page-node-id="72n3uZKLmxdGvCeRdb40al">送貨地址</h2>
+          <p class="card-sub" data-page-node-id="R8c1nrCKCvmC3VSkBGVFBw">香港地區不設郵政編號，請填寫街道及大廈／樓層／單位資料</p>
+        </div>
+        <div class="card-body" data-page-node-id="UQlFRC6AReOcoJVftHVY4X">
+          <div class="field" data-field="addr1" data-page-node-id="G1k3UJnzHwq9218cCrWeHd">
+            <label class="lb" for="addr1" data-page-node-id="fpUkWreH2eLXgZyqYaJtoj">地址第一行<span class="req" data-page-node-id="yRFgRY0e9tg3mIKAIAo9Dk">*</span></label>
+            <input id="addr1" name="addr1" type="text" placeholder="例如：軒尼詩道 1 號" maxlength="60" autocomplete="address-line1" data-page-node-id="9e4AE9XwS2p3iURJ2WIRKp">
+            <p class="hint" data-page-node-id="XbZMRGhP1PcJaBXfQToSwn">街道名稱及門牌號碼</p>
+            <p class="err" data-page-node-id="ioe1Qw3kDBTwRiYsbZtgdb">請輸入地址第一行。</p>
+          </div>
+
+          <div class="field" data-field="addr2" data-page-node-id="QpTQBYP5ypOFcSWfbfq3Po">
+            <label class="lb" for="addr2" data-page-node-id="KEhH69PzeLdkNsg0wfQ2yp">地址第二行<span class="opt" data-page-node-id="dqFrvvvt9NY5MdbdqGWaB8">（可選）</span></label>
+            <input id="addr2" name="addr2" type="text" placeholder="例如：金鐘大廈 12 樓 A 室" maxlength="60" autocomplete="address-line2" data-page-node-id="aXzmS5yo7ywVauCv2sOnK3">
+            <p class="hint" data-page-node-id="UYX2k21hIDxAQYCp9BFM54">大廈名稱、樓層及單位</p>
+          </div>
+
+          <div class="grid2" data-page-node-id="C12nfRnVLVWgvnfZpHbDKX">
+            <div class="field" data-field="district" data-page-node-id="CqKOL3SJs90OeVHFYKFKlm">
+              <label class="lb" for="district" data-page-node-id="faDasYOwCpnxDD4skHlXgv">地區<span class="req" data-page-node-id="tEzrXD5oYG2JGKFNC7xuim">*</span></label>
+              <select id="district" name="district" data-page-node-id="pDGnRc3XtZFQQe6LpjBc4Q">
+                <option value="" selected data-page-node-id="UbHXq6D6aYaEAz5WjDg31q">請選擇地區</option>
+                <optgroup label="香港島" data-page-node-id="fBT5SeKvApklDHvAJh52Mu">
+                  <option data-page-node-id="Y6xMi2wTXGCCQcuGT95Jtv">中西區</option><option data-page-node-id="p17Uklbdj8VyelzvoOUeTA">灣仔區</option><option data-page-node-id="2ynEHeYyMzYCEoaEC4SJa9">東區</option><option data-page-node-id="6tQaz5BeMB0UPfy74N5zWf">南區</option>
+                </optgroup>
+                <optgroup label="九龍" data-page-node-id="ZABx7fGJQgudfCvUSuLr4M">
+                  <option data-page-node-id="MyFHwaEHxYBCIGOP7uLRld">油尖旺區</option><option data-page-node-id="Jwlo7NGuTMevUCIWxHzgKN">深水埗區</option><option data-page-node-id="CZgRJPRR8NVW8fVEsHD8QK">九龍城區</option>
+                  <option data-page-node-id="zzbqPGX6OHhZ2RtVPFzYAE">黃大仙區</option><option data-page-node-id="CZMRuRzyXy1yLd9GNOWSQX">觀塘區</option>
+                </optgroup>
+                <optgroup label="新界" data-page-node-id="yjD5j7EDHbFnhJsfoADN3f">
+                  <option data-page-node-id="m1gQjT9AZdk9EUBJkd8Xab">葵青區</option><option data-page-node-id="o0xr5oOyTP4nwt38csDWYj">荃灣區</option><option data-page-node-id="908JydNAFbfsyLwJhAZcnv">屯門區</option><option data-page-node-id="LOHzfnA4aF0VLtcYxEtfe1">元朗區</option>
+                  <option data-page-node-id="ViXlfUnw4IChpoCRmjBK4h">北區</option><option data-page-node-id="mUNJl6692LBIW98llYdvFB">大埔區</option><option data-page-node-id="SNIyPnvIlQxDH72ErmHOlV">沙田區</option><option data-page-node-id="XH3l9RXL7q7bzBzASwJxB4">西貢區</option><option data-page-node-id="hzvyxCyf92SHp7gQ9slJAo">離島區</option>
+                </optgroup>
+              </select>
+              <p class="err" data-page-node-id="iIqFxUzXN739MsMHvx3Ro2">請選擇送貨地區。</p>
+            </div>
+            <div class="field" data-field="city" data-page-node-id="dG0PBJkTyfVYcq1KM7dNrI">
+              <label class="lb" for="city" data-page-node-id="Hkr7EUSD9yQlACXBeDjVYV">城市</label>
+              <input id="city" name="city" type="text" value="香港" readonly data-page-node-id="hPF4ukoZQeDki1hER5qhql">
+            </div>
+          </div>
+
+          <div class="field" data-field="country" data-page-node-id="bfC46hNJGi6hoDDrQahERa">
+            <label class="lb" for="country" data-page-node-id="Cf2PAjV68gQse7yUGLByuC">國家／地區</label>
+            <input id="country" name="country" type="text" value="香港" readonly data-page-node-id="ptINLmQuCixLdyvV1UhFx4">
+            <p class="hint" data-page-node-id="4TXffbvBJN2lcS10ioKFZ2">送貨服務只適用於香港特別行政區境內地址。</p>
+          </div>
+
+          <div class="field" data-field="note" data-page-node-id="6ryeNL60bKYsVeMvreDyj7">
+            <label class="lb" for="note" data-page-node-id="5cSSTepWBwPmjV8scR22QG">送貨指示<span class="opt" data-page-node-id="EKvta3vUnT4nn9BDqQ0di3">（可選）</span></label>
+            <textarea id="note" name="note" maxlength="200" placeholder="例如：請於下午 2 時後送達；到達前請先致電。"></textarea>
+          </div>
+
+          <div class="actions" data-page-node-id="dvyer0Bp6HHNwNdGkmFgff">
+            <button type="submit" class="btn btn-primary" id="submitBtn" data-page-node-id="6DRlXxw2LAeaSTDvBtA4CK">繼續</button>
+            <button type="button" class="btn btn-ghost" id="resetBtn" data-page-node-id="urGthunvmuMpFAfgLov2jA">清除重填</button>
+          </div>
+        </div>
+      </section>
+    </form>
+
+    <!-- ======= 訂單摘要 ======= -->
+    <aside class="summary" data-page-node-id="oCfnTHf4hIGVYcUuWt8nKh">
+      <h2 data-page-node-id="87mOZqwIKUUsiadqflwklP">訂單摘要</h2>
+      <div class="prod" data-page-node-id="H6OPtS38pT7bngmhZgwu8u">
+        <div class="thumb" aria-hidden="true" data-page-node-id="djp1Ui6Reh4sBA4pDxF97i"><span class="ph"></span></div>
+        <div data-page-node-id="uMGRyG2C5sx8qauBAFdlkF">
+          <p class="prod-name" data-page-node-id="j5IYatARzLlCgOvjzPsYe7">iPhone 18 Pro 256GB 布根地紅色</p>
+          <p class="prod-meta" data-page-node-id="dj9jAZq4SFqI4lqxQs8i5f">數量 1 · A20 Pro 晶片 · 可變光圈相機</p>
+        </div>
+      </div>
+      <div class="rows" data-page-node-id="5l2xZ2RhKz7V0KQoqq2GKC">
+        <div class="row" data-page-node-id="U8Dg1g1CRUBBPBCEieDKVV"><span data-page-node-id="2VDbGjXAhAjNQVrDgwh2JW">小計</span><span data-page-node-id="fksq4cKiYSEEWSaUxl3Kh4">HK$ 10,499</span></div>
+        <div class="row" data-page-node-id="6q49XNaMrFhi0KFVNATAYl"><span data-page-node-id="8yO0WwhxybuZpcG87tcWaN">送貨</span><span class="free" data-page-node-id="Tq8c7pEa3CcsHaQkHEGLHY">免費</span></div>
+        <div class="row" data-page-node-id="KAAdC7y87pPwFzGb76FCvB"><span data-page-node-id="poeQmwjOoFR44y6WvbqtWz">預計送達</span><span data-page-node-id="2sC0i7qj4y57Rir43oKSY0">9 月 18 日起</span></div>
+        <div class="row total" data-page-node-id="Dmvs84sy1m0S1xcQbXfXFE"><span data-page-node-id="qoc4HiLxzdjCfv5fNnAdDx">總計</span><span data-page-node-id="TWWLGBsvH3415IEncNnkhy">HK$ 10,499</span></div>
+      </div>
+      <p class="po-note">9 月 12 日（星期六）晚上 8 時起接受預訂，9 月 18 日（星期五）正式發售。</p>
+      <div class="assure" data-page-node-id="SFEqdSPLpDmc727EwMqHO4">
+        <div data-page-node-id="TtQ7iz8WJn9j2L4yZeImhm"><span class="ic" data-page-node-id="bfNMt3uOl1OiXcxXGZEVGd">●</span><span data-page-node-id="PsgGhulzEDks2hZNLmac6w">你只會在確定下單時才需要付款。</span></div>
+        <div data-page-node-id="ZoQ6DAXW63fSYOHdFwwaAt"><span class="ic" data-page-node-id="jTlqXg7z2gAOiuAU0TrMwX">●</span><span data-page-node-id="SUOmbq37m8eacON3VrqMBc">此為示範頁面，不會產生任何訂單或扣款。</span></div>
+      </div>
+    </aside>
+  </div>
+
+  <p class="footnote" data-page-node-id="ovDkAXhwGJ2vAvdWmUfPgT">本頁面為依香港 Apple 官網結帳頁樣式製作的填寫示範，僅供內部模擬輸入及列印使用，並非 Apple 官方頁面，亦不會收集或傳送任何資料。</p>
+</main>
+
+<!-- ======= 核對彈層 ======= -->
+<div class="overlay" id="overlay" data-page-node-id="CrTzWGqUgETViUgEz4FcN1">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="mTitle" data-page-node-id="1iQRQ2ZJkKW5qPBTFKmPJq">
+    <h3 id="mTitle" data-page-node-id="HYlVOdcN40SWR6UTVHbiIh">核對你的送貨資料</h3>
+    <p class="m-sub" data-page-node-id="qJiiYjwco71eu56iBAJnpb">請確認以下資料正確無誤。此步驟不會送出任何資料。</p>
+    <div class="kv" id="kvBox" data-page-node-id="ImMsB7HrSnyaQZLG8llc53"></div>
+    <div class="actions" data-page-node-id="i8zG8FJZ6vNr8yRN2EvRKp">
+      <button type="button" class="btn btn-primary" id="confirmBtn" data-page-node-id="8g4XyuqLaKgriBZeVsJJXT">確認資料</button>
+      <button type="button" class="btn btn-plain" id="backBtn" data-page-node-id="8CR4o2XtOlZGMJaGHds3sM">返回修改</button>
+      <button type="button" class="btn btn-ghost" id="printBtn" data-page-node-id="xd39FmrhaCAGOIXxGLkCYe">列印／另存 PDF</button>
+    </div>
+    <p class="modal-note" data-page-node-id="mqxW2DboyQFdYOYwJFIbRf">示範環境：確認後只會於畫面顯示提示，不會向任何伺服器提交。</p>
+  </div>
+</div>
+
+<div class="toast" id="toast" data-page-node-id="AEZynKjmkhHUI57IVYT9tZ"></div>
+
+<script>
+(function () {
+  'use strict';
+
+  var form     = document.getElementById('shipForm');
+  var overlay  = document.getElementById('overlay');
+  var kvBox    = document.getElementById('kvBox');
+  var toastEl  = document.getElementById('toast');
+  var phoneEl  = document.getElementById('phone');
+  var district = document.getElementById('district');
+
+  /* ---------- 電話號碼自動分段（XXXX XXXX） ---------- */
+  phoneEl.addEventListener('input', function () {
+    var d = phoneEl.value.replace(/\D/g, '').slice(0, 8);
+    phoneEl.value = d.length > 4 ? d.slice(0, 4) + ' ' + d.slice(4) : d;
+  });
+
+  /* ---------- 即時清除錯誤態 ---------- */
+  Array.prototype.forEach.call(form.querySelectorAll('input,select,textarea'), function (el) {
+    var ev = (el.tagName === 'SELECT') ? 'change' : 'input';
+    el.addEventListener(ev, function () {
+      var f = el.closest('.field');
+      if (f) { f.classList.remove('invalid'); }
+    });
+  });
+
+  /* ---------- 驗證規則 ---------- */
+  function setInvalid(name, msg) {
+    var f = form.querySelector('.field[data-field="' + name + '"]');
+    if (!f) { return; }
+    f.classList.add('invalid');
+    if (msg) {
+      var e = f.querySelector('.err');
+      if (e) { e.textContent = msg; }
+    }
+  }
+
+  function validate() {
+    var bad = [];
+    var v = {};
+
+    Array.prototype.forEach.call(form.querySelectorAll('.field'), function (f) {
+      f.classList.remove('invalid');
+    });
+
+    ['lastName', 'firstName', 'email', 'phone', 'addr1'].forEach(function (id) { v[id] = form[id].value.trim(); });
+    v.district = district.value;
+    v.addr2    = form.addr2.value.trim();
+    v.note     = form.note.value.trim();
+
+    if (!v.lastName)  { setInvalid('lastName', '請輸入你的姓氏。'); bad.push('lastName'); }
+    if (!v.firstName) { setInvalid('firstName', '請輸入你的名字。'); bad.push('firstName'); }
+
+    if (!v.email) {
+      setInvalid('email', '請輸入電郵地址。'); bad.push('email');
+    } else if (!/^[^\s@]+@[^\s@]+\.[A-Za-z]{2,}$/.test(v.email)) {
+      setInvalid('email', '請輸入有效的電郵地址。'); bad.push('email');
+    }
+
+    var digits = v.phone.replace(/\D/g, '');
+    if (!digits) {
+      setInvalid('phone', '請輸入電話號碼。'); bad.push('phone');
+    } else if (digits.length !== 8 || !/^[2-9]/.test(digits)) {
+      setInvalid('phone', '請輸入 8 位數字的香港電話號碼。'); bad.push('phone');
+    }
+
+    if (!v.addr1) { setInvalid('addr1', '請輸入地址第一行。'); bad.push('addr1'); }
+    if (!v.district) { setInvalid('district', '請選擇送貨地區。'); bad.push('district'); }
+
+    return { ok: bad.length === 0, first: bad[0], values: v };
+  }
+
+  /* ---------- 提交（不送出，只核對） ---------- */
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var r = validate();
+    if (!r.ok) {
+      var el = form.querySelector('.field[data-field="' + r.first + '"] input, .field[data-field="' + r.first + '"] select');
+      if (el) { el.focus({ preventScroll: true }); el.scrollIntoView({ behavior: 'smooth', block: 'center' }); }
+      showToast('請檢查標示為紅色的欄位。');
+      return;
+    }
+    openReview(r.values);
+  });
+
+  /* ---------- 核對內容 ---------- */
+  function openReview(v) {
+    var rows = [
+      ['姓名', v.lastName + ' ' + v.firstName],
+      ['電郵地址', v.email],
+      ['電話號碼', '+852 ' + v.phone],
+      ['地址', v.addr1 + (v.addr2 ? '，' + v.addr2 : '')],
+      ['地區／城市', v.district + '，香港'],
+      ['國家／地區', '香港'],
+      ['送貨指示', v.note || '—']
+    ];
+    kvBox.innerHTML = rows.map(function (r) {
+      return '<div class="kvrow"><div class="k">' + esc(r[0]) + '</div><div class="v">' + esc(r[1]) + '</div></div>';
+    }).join('');
+    overlay.classList.add('open');
+  }
+
+  function esc(s) {
+    return String(s).replace(/[&<>"']/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+    });
+  }
+
+  document.getElementById('backBtn').addEventListener('click', function () {
+    overlay.classList.remove('open');
+  });
+  document.getElementById('printBtn').addEventListener('click', function () { window.print(); });
+  document.getElementById('confirmBtn').addEventListener('click', function () {
+    overlay.classList.remove('open');
+    showToast('示範頁面：資料已核對，並未送出任何內容。');
+  });
+  overlay.addEventListener('click', function (e) {
+    if (e.target === overlay) { overlay.classList.remove('open'); }
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') { overlay.classList.remove('open'); }
+  });
+
+  /* ---------- 清除重填 ---------- */
+  document.getElementById('resetBtn').addEventListener('click', function () {
+    form.reset();
+    district.value = '';
+    Array.prototype.forEach.call(form.querySelectorAll('.field'), function (f) { f.classList.remove('invalid'); });
+    showToast('已清除所有填寫內容。');
+    form.lastName.focus();
+  });
+
+  /* ---------- Toast ---------- */
+  var toastTimer = null;
+  function showToast(msg) {
+    toastEl.textContent = msg;
+    toastEl.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function () { toastEl.classList.remove('show'); }, 2600);
+  }
+})();
+</script>
+</body>
+</html>
