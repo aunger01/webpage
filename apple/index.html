@@ -221,7 +221,7 @@
               <input id="phone" name="phone" type="tel" inputmode="numeric" placeholder="例如：9123 4567" autocomplete="tel-national" data-page-node-id="rGFQ929Pmdm2XT4ymw1AxC">
             </div>
             <p class="hint" data-page-node-id="EilCcCIohlUsbdFIN6q5Ho">送貨人員會以此號碼與你聯絡，請確認號碼可接通。</p>
-            <p class="err" data-page-node-id="uxZk3INy60OV7xaaPUe2DR">請輸入 8 位數字的香港電話號碼。</p>
+            <p class="err" data-page-node-id="uxZk3INy60OV7xaaPUe2DR">請輸入 11 位數字的電話號碼。</p>
           </div>
         </div>
       </section>
@@ -346,7 +346,7 @@
 
   /* ---------- 電話號碼自動分段（XXXX XXXX） ---------- */
   phoneEl.addEventListener('input', function () {
-    var d = phoneEl.value.replace(/\D/g, '').slice(0, 8);
+    var d = phoneEl.value.replace(/\D/g, '').slice(0, 11);
     phoneEl.value = d.length > 4 ? d.slice(0, 4) + ' ' + d.slice(4) : d;
   });
 
@@ -395,8 +395,8 @@
     var digits = v.phone.replace(/\D/g, '');
     if (!digits) {
       setInvalid('phone', '請輸入電話號碼。'); bad.push('phone');
-    } else if (digits.length !== 8 || !/^[2-9]/.test(digits)) {
-      setInvalid('phone', '請輸入 8 位數字的香港電話號碼。'); bad.push('phone');
+    } else if (digits.length !== 11) {
+      setInvalid('phone', '請輸入 11 位數字的電話號碼。'); bad.push('phone');
     }
 
     if (!v.addr1) { setInvalid('addr1', '請輸入地址第一行。'); bad.push('addr1'); }
