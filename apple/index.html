@@ -344,10 +344,9 @@
   var phoneEl  = document.getElementById('phone');
   var district = document.getElementById('district');
 
-  /* ---------- 電話號碼自動分段（XXXX XXXX） ---------- */
+  /* ---------- 電話號碼：僅保留數字（最多 11 位，不自動分段） ---------- */
   phoneEl.addEventListener('input', function () {
-    var d = phoneEl.value.replace(/\D/g, '').slice(0, 11);
-    phoneEl.value = d.length > 4 ? d.slice(0, 4) + ' ' + d.slice(4) : d;
+    phoneEl.value = phoneEl.value.replace(/\D/g, '').slice(0, 11);
   });
 
   /* ---------- 即時清除錯誤態 ---------- */
