@@ -1,0 +1,39 @@
+#!name=Apple Intelligence / iOS27 New Siri
+#!desc=Apple Intelligence、Private Cloud Compute、Siri 相关规则
+
+[Rule]
+
+# ===== 基础 / 网关 =====
+DOMAIN-SUFFIX,gateway.icloud.com,PROXY
+DOMAIN,probe.icloud.com,PROXY
+DOMAIN,metrics.icloud.com,PROXY
+DOMAIN,guzzoni.apple.com,PROXY
+DOMAIN-SUFFIX,smoot.apple.com,PROXY
+
+# ===== Apple Intelligence / Private Cloud Compute =====
+DOMAIN-SUFFIX,apple-relay.apple.com,PROXY
+DOMAIN-SUFFIX,apple-relay.cloudflare.com,PROXY
+DOMAIN-SUFFIX,apple-relay.fastly-edge.com,PROXY
+DOMAIN,apple-relay.akamaized.net,PROXY
+DOMAIN,apple-carry-relay.cloudflare.com,PROXY
+DOMAIN-SUFFIX,cp4.cloudflare.com,PROXY
+
+# ===== Apple Intelligence relay / bootstrap（mask 系列） =====
+DOMAIN-SUFFIX,apple-relay.mask.apple-dns.net,PROXY
+DOMAIN,mask-api.icloud.com,PROXY
+DOMAIN,mask-api.fe.apple-dns.net,PROXY
+DOMAIN,mask-api.fe2.apple-dns.net,PROXY
+DOMAIN,mask-t.apple-dns.net,PROXY
+DOMAIN,mask.apple-dns.net,PROXY
+DOMAIN-SUFFIX,mask-h2.icloud.com,PROXY
+DOMAIN-SUFFIX,mask.icloud.com,PROXY
+
+# ===== Apple region determination / App Store =====
+DOMAIN-SUFFIX,gspe1-ssl.ls.apple.com,PROXY
+DOMAIN-SUFFIX,ls.apple.com,PROXY
+DOMAIN-SUFFIX,apps.mzstatic.com,PROXY
+
+# ===== Siri =====
+DOMAIN,seed.siri.apple.com,PROXY
+DOMAIN,api-siri-prod.apple.com,PROXY
+DOMAIN-KEYWORD,siri,PROXY
