@@ -17,13 +17,18 @@
 | `favicon.ico` | 站点图标（按浏览器惯例置于根目录） |
 | `CNAME` / `robots.txt` / `404.html` / `.gitignore` | 部署配置 |
 
-### ② 源码子站（`app/`）
+### ② 源码子站 / 配置文件（`app/`）
 
 | 目录 | 用途 | 访问地址 |
 |---|---|---|
 | `app/help/` | 「你不会百度吗」恶搞子站（Baidu / Bing / Google 三套皮肤） | <https://l1n2.com/app/help> |
 | `app/xjj/` | 随机视频子站 | <https://l1n2.com/app/xjj> |
 | `app/mp4/` | 离线视频格式重封装工具（remux，不重新编码） | <https://l1n2.com/app/mp4> |
+| `app/apple/` | 仿 Apple 結帳页（电话 11 位校验、卡面表单演示） | <https://l1n2.com/app/apple> |
+| `app/ai-only.conf` | Shadowrocket 分流配置：AI 域名走代理，其余 `FINAL,DIRECT` | <https://l1n2.com/app/ai-only.conf> |
+| `app/iOS27.module` | Shadowrocket 模块：Apple Intelligence / iOS27 New Siri 规则 | <https://l1n2.com/app/iOS27.module> |
+
+> 两个 `Shadowrocket` 文件（`.conf` / `.module`）为纯规则配置，不含任何节点、密码或订阅链接，可直接用直链在客户端导入。
 
 ### ③ 跳转页（根目录一级短链目录）
 
