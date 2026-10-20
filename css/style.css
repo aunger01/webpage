@@ -642,3 +642,137 @@ a:hover {
 
   }
 }
+
+/* ===== 关于本站：图标横排 + 公众号二维码浮层（2026-10-20） ===== */
+.social-bar {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+  padding: 28px 20px;
+}
+
+.social-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 46px;
+  height: 46px;
+  flex: 0 0 auto;
+  border-radius: 50%;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  cursor: pointer;
+  outline: none;
+  transition: transform 0.22s ease, background 0.22s ease, box-shadow 0.22s ease;
+}
+
+.social-item:hover,
+.social-item:focus-visible {
+  background: rgba(255, 255, 255, 0.22);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.28);
+  opacity: 1;
+}
+
+.social-item svg {
+  display: block;
+  width: 22px;
+  height: 22px;
+}
+
+.social-qr.active {
+  background: rgba(255, 255, 255, 0.24);
+}
+
+/* 二维码浮层 */
+.social-qr .qr-pop {
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 14px);
+  transform: translateX(-50%) translateY(6px);
+  width: 172px;
+  padding: 14px 14px 12px;
+  background: #ffffff;
+  border-radius: 14px;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.38);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
+  z-index: 30;
+}
+
+/* 小三角 */
+.social-qr .qr-pop::before {
+  content: "";
+  position: absolute;
+  bottom: -5px;
+  left: 50%;
+  width: 10px;
+  height: 10px;
+  margin-left: -5px;
+  background: #ffffff;
+  border-radius: 2px;
+  transform: rotate(45deg);
+}
+
+.social-qr:hover .qr-pop,
+.social-qr:focus-visible .qr-pop,
+.social-qr.active .qr-pop {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+}
+
+.qr-pop img {
+  display: block;
+  width: 144px;
+  height: 144px;
+  object-fit: contain;
+  border-radius: 6px;
+}
+
+.qr-pop .qr-tip {
+  font-size: 11px;
+  line-height: 16px;
+  letter-spacing: 0.04em;
+  color: #333333;
+  text-align: center;
+}
+
+@media screen and (max-width: 500px) {
+  .social-bar {
+    gap: 22px;
+    padding: 24px 16px;
+  }
+
+  .social-item {
+    width: 44px;
+    height: 44px;
+  }
+
+  .social-item svg {
+    width: 21px;
+    height: 21px;
+  }
+
+  .social-qr .qr-pop {
+    width: 160px;
+    padding: 12px 12px 10px;
+  }
+
+  .qr-pop img {
+    width: 132px;
+    height: 132px;
+  }
+}

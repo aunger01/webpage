@@ -41,6 +41,31 @@
                 alert('复制成功');
             }
         }
+        // 公众号二维码：点击切换（移动端无 hover），键盘可操作
+        function toggleQr(el, e) {
+            if (e) {
+                e.preventDefault();
+                e.stopPropagation();
+            }
+            el.classList.toggle('active');
+        }
+
+        function qrKey(el, e) {
+            if (e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar') {
+                toggleQr(el, e);
+            } else if (e.key === 'Escape') {
+                el.classList.remove('active');
+            }
+        }
+
+        // 点击浮层外部时收起二维码
+        document.addEventListener('click', function (e) {
+            document.querySelectorAll('.social-qr.active').forEach(function (el) {
+                if (!el.contains(e.target)) {
+                    el.classList.remove('active');
+                }
+            });
+        });
     </script>
 
 </head>
@@ -93,7 +118,6 @@
                             <div class="row">
                                 <div class="text">
                                     <p class="p1">✈️ 安杰聚合导航Nav <span class="p1span">Nav新版</span></p>
-                                    <p class="p2">nav.l1n2.com</p>
                                 </div>
                                 <a href="https://nav.l1n2.com/" target="_blank"
                                    class="btn-down">
@@ -101,36 +125,46 @@
                                 </a>
                             </div>
 
-							<div class="top-line nomp"></div>
+                            <div class="top-line nomp"></div>
                             <div class="row">
                                 <div class="text">
-                                    <p class="p1">🧭 安杰聚合导航 <span class="p2span">静态旧版</span></p>
-                                    <p class="p2">1.10000101.xyz</p>
+                                    <p class="p1">🤌 掌中诀-九宫小六壬</p>
                                 </div>
-                                <a href="https://1.10000101.xyz" target="_blank"
+                                <a href="https://dao.l1n2.com" target="_blank" rel="noopener"
                                    class="btn-down">
                                     点击进入
                                 </a>
                             </div>
-                        
+
                             <div class="top-line nomp"></div>
                             <div class="row">
                                 <div class="text">
-                                    <p class="p1">☀️ 安杰聚合搜索2.0</p>
-                                    <p class="p2">1.10000101.xyz/search</p>
+                                    <p class="p1">🧠 SBTI 测试</p>
                                 </div>
-                                <a href="https://1.10000101.xyz/search" target="_blank" class="btn-down">
+                                <a href="https://10000101.xyz/SBTI/" target="_blank" rel="noopener"
+                                   class="btn-down">
                                     点击进入
                                 </a>
                             </div>
-                        
+
                             <div class="top-line nomp"></div>
                             <div class="row">
                                 <div class="text">
-                                    <p class="p1">🌙 安杰聚合搜索1.0</p>
-                                    <p class="p2">2.10000101.xyz</p>
+                                    <p class="p1">💳 Apple Pay卡面设计工具</p>
                                 </div>
-                                <a href="https://2.10000101.xyz" target="_blank" class="btn-down">
+                                <a href="https://10000101.xyz/aircard/" target="_blank" rel="noopener"
+                                   class="btn-down">
+                                    点击进入
+                                </a>
+                            </div>
+
+                            <div class="top-line nomp"></div>
+                            <div class="row">
+                                <div class="text">
+                                    <p class="p1">⚡ GitHub文件加速</p>
+                                </div>
+                                <a href="https://github.testing.ccwu.cc/" target="_blank" rel="noopener"
+                                   class="btn-down">
                                     点击进入
                                 </a>
                             </div>
@@ -139,7 +173,6 @@
                             <div class="row">
                                 <div class="text">
                                     <p class="p1">🔍 你不会百度吗？</p>
-                                    <p class="p2">l1n2.com/app/help</p>
                                 </div>
                                 <a href="https://l1n2.com/app/help" target="_blank" class="btn-down">
                                     点击进入
@@ -170,44 +203,23 @@
                         </div>
                     </div>
                     <div class="panel-box">
-                        
-                            <div class="row">
-                                <div class="text">
-                                    <p class="p1">🤵 安杰博客</p>
-                                    <p class="p2">10000101.xyz</p>
+                        <div class="social-bar">
+                            <a class="social-item" href="https://blog.l1n2.com" target="_blank" rel="noopener" title="安杰博客" aria-label="安杰博客">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H19v18H6.5A2.5 2.5 0 0 1 4 18.5v-13Z"/><path d="M8 7.5h7M8 11.5h7M8 15.5h4"/></svg>
+                            </a>
+                            <a class="social-item" href="mailto:vip@l1n2.com" title="联系邮箱 vip@l1n2.com" aria-label="联系邮箱">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="m3.6 7.2 8.4 5.9 8.4-5.9"/></svg>
+                            </a>
+                            <a class="social-item" href="https://t.me/aungercf" target="_blank" rel="noopener" title="TG 频道 t.me/aungercf" aria-label="TG 频道">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 4 11.8 20.2l-2.4-6.6L3 11.2 21 4Z"/><path d="m21 4-11.6 9.6"/></svg>
+                            </a>
+                            <div class="social-item social-qr" role="button" tabindex="0" title="公众号二维码" aria-label="公众号二维码"
+                                 onclick="toggleQr(this, event)" onkeydown="qrKey(this, event)">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" aria-hidden="true"><path d="M9 4.2c-3.6 0-6.5 2.4-6.5 5.4 0 1.7.9 3.2 2.3 4.2l-.6 2.1 2.3-1.1c.8.3 1.6.4 2.5.4"/><path d="M21.5 13.6c0-2.7-2.5-4.9-5.6-4.9s-5.6 2.2-5.6 4.9 2.5 4.9 5.6 4.9c.7 0 1.3-.1 1.9-.3l2 1-.5-1.9c1.3-.9 2.2-2.2 2.2-3.7Z"/><circle cx="6.9" cy="8.3" r=".85" fill="currentColor" stroke="none"/><circle cx="11.1" cy="8.3" r=".85" fill="currentColor" stroke="none"/><circle cx="13.9" cy="12.7" r=".8" fill="currentColor" stroke="none"/><circle cx="17.9" cy="12.7" r=".8" fill="currentColor" stroke="none"/></svg>
+                                <div class="qr-pop">
+                                    <img src="assets/gzh.jpg" alt="隱無邪 公众号二维码" loading="lazy">
+                                    <div class="qr-tip">扫码关注【隱無邪】公众号</div>
                                 </div>
-                                <a href="https://10000101.xyz/" target="_blank" class="btn-down">
-                                    点击进入
-                                </a>
-                            </div>
-                        
-                            <div class="top-line nomp"></div>
-                            <div class="row">
-                                <div class="text">
-                                    <p class="p1">📮 Aunger联系邮箱</p>
-                                    <p class="p2">VIP@L1N2.COM</p>
-                                </div>
-                                <a href="mailto:vip@l1n2.com" target="_blank" class="btn-down">
-                                    发送邮件
-                                </a>
-                            </div>
-
-							<div class="top-line nomp"></div>
-                            <div class="row">
-                                <div class="text">
-                                    <p class="p1">📰 Aunger TG频道订阅</p>
-                                    <p class="p2">t.me/aungercf</p>
-                                </div>
-                                <a href="https://t.me/aungercf" target="_blank" class="btn-down">
-                                    点击进入
-                                </a>
-                            </div>
-							
-							<div
-                                style="display: flex;align-items: center;padding-top:  45px;justify-content: space-around;width: 100%;margin-bottom: 15px;">
-                            <div class="ercode">
-                                <img alt="公众号二维码" style="width: 120px;" src="assets/gzh.jpg" />
-                                <div class="btnercode">扫码关注【隱無邪】公众号</div>
                             </div>
                         </div>
                     </div>
