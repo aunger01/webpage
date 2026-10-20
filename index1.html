@@ -54,20 +54,19 @@ footer a{color:var(--sub)}
 <header>
 <h1>🌳 站点目录树<small>l1n2.com 全站结构一览 · 点击目录展开 / 点击文件直达</small></h1>
 <div class="toolbar">
-<button id="btn-expand" title="展开全部目录">⊞ 展开</button>
-<button id="btn-collapse" title="收起全部目录">⊟ 收起</button>
+<button id="btn-toggle" title="展开全部目录">⊞ 展开</button>
 <button id="btn-sync" title="从 GitHub 拉取最新仓库结构">🔄 同步最新</button>
 </div>
 </header>
 <div class="card"><tree-root id="tree"></tree-root></div>
-<p id="status">静态视图 · commit e902da8 · 共 25 个页面</p>
+<p id="status">静态视图 · commit 42a46b5 · 共 28 个文件</p>
 <footer>© 2020-2026 Aunger · <a href="/">← 返回主页</a></footer>
 </div>
-<script type="application/json" id="tree-data">{"404.html":1425,"app":{"help":{"Baidu":{"index.html":2431},"Bing":{"index.html":2346},"Google":{"index.html":2345},"index.html":5347},"mp4":{"index.html":14398},"xjj":{"index.html":1966}},"github-top":{"index.html":563},"github":{"index.html":515},"google":{"index.html":563},"gpt":{"index.html":479},"help":{"index.html":500},"index.html":11459,"index1.html":9404,"md":{"index.html":533},"mp4":{"index.html":497},"my":{"index.html":515},"pi":{"index.html":530},"puabook":{"book":{"index.html":533},"index.html":512},"resume":{"index.html":509},"sbti":{"index.html":500},"univ":{"189":{"index.html":527},"carplay":{"index.html":530},"index.html":530}}</script>
+<script type="application/json" id="tree-data">{"404.html":1425,"app":{"ai-only.conf":24152,"apple":{"index.html":30135},"help":{"Baidu":{"index.html":2431},"Bing":{"index.html":2346},"Google":{"index.html":2345},"index.html":5347},"iOS27.module":1333,"mp4":{"index.html":14398},"xjj":{"index.html":1966}},"github-top":{"index.html":563},"github":{"index.html":515},"google":{"index.html":563},"gpt":{"index.html":479},"help":{"index.html":500},"index.html":13155,"index1.html":10184,"md":{"index.html":533},"mp4":{"index.html":497},"my":{"index.html":515},"pi":{"index.html":530},"puabook":{"book":{"index.html":533},"index.html":512},"resume":{"index.html":509},"sbti":{"index.html":500},"univ":{"189":{"index.html":527},"carplay":{"index.html":530},"index.html":530}}</script>
 <script>
 var BASE="https://l1n2.com/",REPO_API="https://api.github.com/repos/aunger01/webpage/git/trees/master?recursive=1";
-var NOTES={"index.html":"主页","index1.html":"本页 · 站点目录树","app":"源码子站","app/help":"「你不会百度吗」恶搞子站","app/xjj":"随机视频子站","app/mp4":"离线视频重封装工具","github":"跳转页 → github.testing.ccwu.cc","github-top":"跳转页 → GitHub 中文项目榜","google":"跳转页 → Google Play 镜像","gpt":"跳转页 → cc.ai55.cc","md":"跳转页 → Markdown 编辑器","my":"跳转页 → 聚合导航书签","pi":"跳转页 → Pi Day","resume":"跳转页 → D&D 简历编辑器","sbti":"跳转页 → SBTI","puabook":"跳转页 → PUA 书目","univ":"跳转页 → 大学资料网盘","help":"兜底跳转 → app/help","mp4":"兜底跳转 → app/mp4","404.html":"404 页面"};
-var ICON={html:"📄",css:"🎨",js:"⚙️",png:"🖼️",gif:"🖼️",webp:"🖼️",jpg:"🖼️",jpeg:"🖼️",ico:"🔷",md:"📝",txt:"📃",CNAME:"🏷️"};
+var NOTES={"index.html":"主页","index1.html":"本页 · 站点目录树","app":"源码子站 / 配置","app/help":"「你不会百度吗」恶搞子站","app/xjj":"随机视频子站","app/mp4":"离线视频重封装工具","app/apple":"仿 Apple 結帳页（电话校验）","app/ai-only.conf":"Shadowrocket · AI-only 配置","app/iOS27.module":"Shadowrocket · iOS27 模块","github":"跳转页 → github.testing.ccwu.cc","github-top":"跳转页 → GitHub 中文项目榜","google":"跳转页 → Google Play 镜像","gpt":"跳转页 → cc.ai55.cc","md":"跳转页 → Markdown 编辑器","my":"跳转页 → 聚合导航书签","pi":"跳转页 → Pi Day","resume":"跳转页 → D&D 简历编辑器","sbti":"跳转页 → SBTI","puabook":"跳转页 → PUA 书目","univ":"跳转页 → 大学资料网盘","help":"兜底跳转 → app/help","mp4":"兜底跳转 → app/mp4","404.html":"404 页面"};
+var ICON={html:"📄",css:"🎨",js:"⚙️",png:"🖼️",gif:"🖼️",webp:"🖼️",jpg:"🖼️",jpeg:"🖼️",ico:"🔷",md:"📝",txt:"📃",CNAME:"🏷️",conf:"🧩",module:"🧩"};
 function fmtSize(n){if(n==null)return"";if(n<1024)return n+" B";if(n<1048576)return(n/1024).toFixed(1)+" KB";return(n/1048576).toFixed(2)+" MB"}
 function icon(name,isDir){if(isDir)return"📁";var i=name.lastIndexOf(".");var ext=i<0?name:name.slice(i+1);return ICON[ext]||"📄"}
 function isDir(v){return v!==null&&typeof v==="object"}
@@ -80,7 +79,7 @@ function render(tree,el,topLevel){
     var v=tree[name],path=topLevel?topLevel+"/"+name:name,note=NOTES[path];
     if(isDir(v)){
       var d=document.createElement("details");
-      if(!topLevel)d.className="top",d.open=true;
+      if(!topLevel)d.className="top";
       var s=document.createElement("summary");
       var hasIdx=v["index.html"]!==undefined&&!isDir(v["index.html"]);
       var label=document.createElement("span");
@@ -109,8 +108,29 @@ function render(tree,el,topLevel){
 var data=JSON.parse(document.getElementById("tree-data").textContent);
 var tree=document.getElementById("tree");render(data,tree,"");
 
-document.getElementById("btn-expand").onclick=function(){document.querySelectorAll("details").forEach(function(d){d.open=true})};
-document.getElementById("btn-collapse").onclick=function(){document.querySelectorAll("details").forEach(function(d){d.open=false})};
+// 展开 / 收起 合一按钮：全开则显示「收起」，否则显示「展开」
+var toggleBtn=document.getElementById("btn-toggle");
+function allOpen(){
+  var ds=document.querySelectorAll("details");
+  if(!ds.length)return false;
+  for(var i=0;i<ds.length;i++){if(!ds[i].open)return false}
+  return true;
+}
+function syncToggleLabel(){
+  var open=allOpen();
+  toggleBtn.textContent=open?"⊟ 收起":"⊞ 展开";
+  toggleBtn.title=open?"收起全部目录":"展开全部目录";
+}
+toggleBtn.onclick=function(){
+  var open=!allOpen();
+  document.querySelectorAll("details").forEach(function(d){d.open=open});
+  syncToggleLabel();
+};
+// 手动点开/收起某个目录后，按钮文案跟着变（toggle 不冒泡，用捕获）
+document.addEventListener("toggle",function(e){
+  if(e.target&&e.target.tagName==="DETAILS")syncToggleLabel();
+},true);
+syncToggleLabel();
 
 var statusEl=document.getElementById("status"),syncBtn=document.getElementById("btn-sync");
 syncBtn.onclick=function(){
@@ -122,15 +142,15 @@ syncBtn.onclick=function(){
     var root={},count=0;
     j.tree.forEach(function(e){
       if(e.truncated)return;
-      if(e.type!=="tree"&&!/\.html?$/i.test(e.path))return;
+      if(e.type!=="tree"&&!/\.(html?|conf|module)$/i.test(e.path))return;
       var parts=e.path.split("/"),node=root;
       for(var i=0;i<parts.length-1;i++)node=node[parts[i]]=node[parts[i]]||{};
       node[parts[parts.length-1]]=e.type==="tree"?{}:e.size;
       if(e.type!=="tree")count++;
     });
     (function prune(o){for(var k in o){if(typeof o[k]==="object"){prune(o[k]);if(Object.keys(o[k]).length===0)delete o[k];}}})(root);
-    tree.innerHTML="";render(root,tree,"");
-    statusEl.className="ok";statusEl.textContent="✅ 已同步 GitHub 最新结构 · 共 "+count+" 个页面";
+    tree.innerHTML="";render(root,tree,"");syncToggleLabel();
+    statusEl.className="ok";statusEl.textContent="✅ 已同步 GitHub 最新结构 · 共 "+count+" 个文件";
   }).catch(function(e){
     statusEl.className="err";statusEl.textContent="⚠️ 同步失败（"+e.message+"），已保留静态视图";
   }).finally(function(){syncBtn.disabled=false});
