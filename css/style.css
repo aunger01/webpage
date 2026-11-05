@@ -490,7 +490,9 @@ a:visited, a:hover, a:active { opacity: 1; }
   .row { min-height: 62px; padding: 0 14px; gap: 10px; }
   .row::before { flex-basis: 18px; }
   .p1 { font-size: 13.5px; }
-  .btn-down { padding: 7px 12px; font-size: 11px; }
+  /* 移动端两钮同尺：复制链接与点击进入完全一致 */
+  .btn,
+  .btn-down { padding: 0 12px; font-size: 11px; height: 30px; }
   .social-bar { gap: 18px; padding: 22px 14px; }
   .social-item { width: 44px; height: 44px; }
   .page-mark::before { font-size: 44vw; bottom: -2vh; }
