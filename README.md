@@ -51,7 +51,9 @@
 
 ## 跳转页约定
 
-每个子目录一个 `index.html`（meta refresh + canonical + 兜底链接，`noindex`）。修改跳转目标时只需改该文件里的目标 URL。新增跳转页时复制 `github/index.html` 模板。
+每个子目录一个 `index.html`，四件套：`<head>` 内 `location.replace()` 立即跳转（页面不绘制，无感）+ `meta refresh` 与 `canonical`（禁用 JS 与爬虫兜底）+ `<noscript>` 手工链接（仅无 JS 时可见），全页 `noindex`、`<title>` 留空。修改跳转目标时须同改该文件内的 4 处目标 URL；新增跳转页时复制 `github/index.html` 模板。
+
+> 勿退回「meta refresh 单干」的旧写法：meta refresh 是先渲染页面再跳，0 秒也会闪一帧「正在跳转」字样（2026-08-28 那轮统一改造即因此产生明显闪字，2026-11-11 已改回 JS 主跳 + meta 兜底）。
 
 ## 开发与部署
 
