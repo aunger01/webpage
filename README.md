@@ -38,6 +38,7 @@
 | `github-top/` | https://10000101.xyz/GitHub-Chinese-Top-Charts/ |
 | `google/` | https://10000101.xyz/android-google-play-store/ |
 | `gpt/` | https://cc.ai55.cc/ |
+| `ip/` | https://10000101.xyz/safeIP |
 | `md/` | https://editor.10000101.xyz/examples/ |
 | `my/` | https://1.10000101.xyz/bookmark |
 | `pi/` | http://www.subidiom.com/pi/piday.asp |
